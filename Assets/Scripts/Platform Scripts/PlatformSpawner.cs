@@ -42,14 +42,7 @@ public class PlatformSpawner : MonoBehaviour
         }
         
     }
-
     
-    void Update()
-    {
-        
-    }
-
-
   public void SpawnPlatforms()
     {
         //Vector2 temp = transform.position;
@@ -62,19 +55,21 @@ public class PlatformSpawner : MonoBehaviour
 
             if ((platformSpawned % 2) == 0) //even number? spawn a right platform
             {
-                temp.x = Random.Range(left_X_Min, left_X_Max); // left has been used because it appears differently.. as in the maximum left or right it can go
+                temp.x = Random.Range(right_X_Min, right_X_Max);
+                //temp.x = Random.Range(left_X_Min, left_X_Max); // left has been used because it appears differently.. as in the maximum left or right it can go
                 newplatform = Instantiate(rightPlatform, temp, Quaternion.identity);
             }
 
             else //if we have an odd number, spawn a left platform
             {
-                temp.x = Random.Range(right_X_Min, right_X_Max); // right has been used because it appears differently
+                temp.x = Random.Range(left_X_Min, left_X_Max);
+                //temp.x = Random.Range(right_X_Min, right_X_Max); // right has been used because it appears differently
                 newplatform = Instantiate(leftPlatform, temp, Quaternion.identity);
 
             }
 
             newplatform.transform.parent = platform_Parent;
-            last_Y += Y_Threshold;
+            last_Y += Y_Threshold; //Threshold is the difference between every platform in height on Y axis
             platformSpawned++;
 
         }
