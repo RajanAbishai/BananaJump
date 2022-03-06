@@ -14,6 +14,14 @@ public class PlayerScript : MonoBehaviour
     private int push_Count;
     private bool player_Died;
 
+    public int Score=0;
+    public int scoreForCrossingPlatform=1;
+    public int scoreForSingleBanana=2;
+    public int scoreForMultipleBananas=5;
+    public int scoreForEvadingBird=2;
+
+
+
     void Awake()
     {
         myBody = GetComponent<Rigidbody2D>();
@@ -59,7 +67,9 @@ public class PlayerScript : MonoBehaviour
                 myBody.velocity = new Vector2(myBody.velocity.x, 18f);
                 target.gameObject.SetActive(false);
 
-                //sound manager
+                SoundManager.instance.jumpSoundFX();
+
+                
                 return; //This return exits from OnTriggerEnter2D because of the initial push.  
             } //initial push
 
@@ -72,8 +82,12 @@ public class PlayerScript : MonoBehaviour
             target.gameObject.SetActive(false); //deactivates the banana
 
             push_Count++;
+
+            SoundManager.instance.jumpSoundFX();
+
+            //+2 score
+            Score += scoreForSingleBanana;
             
-            //Sound manager
 
         }
 
@@ -84,7 +98,10 @@ public class PlayerScript : MonoBehaviour
 
             push_Count++;
 
-            //sound manager
+            SoundManager.instance.jumpSoundFX();
+
+            //+5 score
+            Score += scoreForMultipleBananas;
 
         }
 
@@ -94,7 +111,37 @@ public class PlayerScript : MonoBehaviour
             PlatformSpawner.instance.SpawnPlatforms();
         }
 
-        
+
+        if (target.tag == TagManager.FALL_DOWN_TAG||target.tag==TagManager.BIRD_TAG)
+        {
+            player_Died = true;
+
+            SoundManager.instance.gameOverSoundFX();
+            
+            
+            GameManager.instance.RestartGame();
+        }
+
+        if (target.tag == TagManager.BIRD_EVASION_TAG)
+        {
+            
+            //+2 score
+            Score += scoreForEvadingBird;
+            
+
+        }
+
+        if (target.tag == TagManager.PLATFORM_CROSSING_TAG)
+        {
+            
+            //+1 score
+            Score += scoreForCrossingPlatform;
+            
+        }
+
+        GameManager.instance.scoreToBeDisplayed.text = Score.ToString();
+
+
     } // OnTriggerEnter
 
 

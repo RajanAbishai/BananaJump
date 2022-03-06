@@ -26,7 +26,16 @@ public class PlatformSpawner : MonoBehaviour
     [SerializeField]
     private Transform platform_Parent; // This is to avoid clustering all the platforms inside the hierarchy.
 
-    //variables to spawn bird enemy
+    //VARIABLES FOR SPAWNING BIRD ENEMY
+    [SerializeField]
+    private GameObject bird;
+    
+    
+    public float bird_Y = 5f;
+    private float bird_X_Min = -2.3f;
+    private float bird_X_Max = 2.3f;
+
+
 
     private void Start()
     {
@@ -73,7 +82,26 @@ public class PlatformSpawner : MonoBehaviour
             platformSpawned++;
 
         }
+
+        if (Random.Range(0, 2) > 0) //50% chance to spawn because it only considers 0 and 1
+        {
+            SpawnBird();
+        } // Random range.. spawn bird
+
+    } //spawn platform
+
+    void SpawnBird()
+    {
+        Vector2 temp = transform.position; //this returns x and y axes and not z
+        temp.x = Random.Range(bird_X_Min, bird_X_Max);
+
+        temp.y += bird_Y; //to offset it from the current platform spawner
+
+        GameObject newBird = Instantiate(bird, temp, Quaternion.identity);
+        newBird.transform.parent = platform_Parent; //birds get stored in the platform parent as well.
+
     }
 
 
-}
+
+} // class

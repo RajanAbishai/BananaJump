@@ -10,6 +10,13 @@ public class TagManager : MonoBehaviour
     public static string BACKGROUND_TAG = "BG";
     public static string PLATFORM_TAG = "Platform";
     public static string BIRD_TAG = "Bird";
+    public static string FALL_DOWN_TAG = "FallDown";
+    public static string GAMEPLAY_TAG = "Gameplay";
 
+    public static string SCORE_UI_ELEMENT_TAG = "SCORE_UI_ELEMENT";
+
+
+    public static string BIRD_EVASION_TAG = "BirdEvasion";
+    public static string PLATFORM_CROSSING_TAG = "PlatformCrossing";
 
 }

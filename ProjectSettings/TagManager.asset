@@ -9,6 +9,9 @@ TagManager:
   - NormalPush
   - Platform
   - Bird
+  - FallDown
+  - BirdEvasion
+  - PlatformCrossing
   layers:
   - Default
   - TransparentFX
@@ -45,4 +48,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Bird
+    uniqueID: 2703368321
+    locked: 0
+  - name: Score
+    uniqueID: 3424788791
     locked: 0
