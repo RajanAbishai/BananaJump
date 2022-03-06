@@ -554,7 +554,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreToBeDisplayed: {fileID: 1640830557}
-  scoreVariableFromOtherScript: 0
 --- !u!4 &281158954
 Transform:
   m_ObjectHideFlags: 0
